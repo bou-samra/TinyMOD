@@ -19,12 +19,11 @@
 
   Changelog:
 
-  2024-03-09:
-  * modifications by Jason Bou-Samra
+  2024-03-09:(modifications by Jason Bou-Samra)
   * changes to main() routine to make executable from Linux command line interface
   * modularised paula and modplayer classes into seperate files
   * added sound output using port audio
-  * sprinkled comments throughout source code, and general source formatting
+  * sprinkled comments throughout source code, and general source tidyup
   * created makefile
 
   2007-12-07:
