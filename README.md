@@ -36,4 +36,4 @@
 
   2007-12-06: first "release". Note to self: Don't post stuff on pouet.net when drunk.
 
-//  TO COMPILE: g++ -o tinymod `pkg-config --libs alsa` tinymod.cpp -lm -L . -l:libportaudio.a
+  TO COMPILE: g++ -o tinymod `pkg-config --libs alsa` tinymod.cpp -lm -L . -l:libportaudio.a
