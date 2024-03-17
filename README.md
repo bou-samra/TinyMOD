@@ -1,4 +1,4 @@
-**<p>TinyMOD<br>**
+# TinyMOD
 Written by Tammo "kb" Hinrichs in 2007<br>
 This source code is hereby placed into the public domain. Use, distribute,
 modify, misappropriate and generally abuse it as you wish. Giving credits
@@ -17,7 +17,7 @@ at the top. Code for testing is at the bottom.</p>
 <p>You'll need some kind of sound output that calls back the player providing
 it a stereo interleaved single float buffer to write into (0dB=1.0).</p>
 
-<p>Changelog:</p>
+## Changelog:
 
 2024-03-09: (modifications by Jason Bou-Samra)
 * changes to main() routine to make executable from Linux command line interface
@@ -36,5 +36,8 @@ it a stereo interleaved single float buffer to write into (0dB=1.0).</p>
 2007-12-06:
 * first "release". Note to self: Don't post stuff on pouet.net when drunk.
 
-TO COMPILE:<br>
-type **make** or **g++ -o tinymod `pkg-config --libs alsa` tinymod.cpp -lm -L . -l:libportaudio.a** on the command line
+## Compilation
+type `make` or `g++ -o tinymod pkg-config --libs alsa tinymod.cpp -lm -L . -l:libportaudio.a` on the command line
+
+## Author
+Jason Bou-Samra
