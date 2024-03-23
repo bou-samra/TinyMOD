@@ -19,25 +19,26 @@ it a stereo interleaved single float buffer to write into (0dB=1.0).</p>
 
 ## Changelog:
 
-2024-03-09: (modifications by Jason Bou-Samra)
+2024-03-09: (Jason Bou-Samra)
 * changes to main() routine to make executable from Linux command line interface
 * modularised paula and modplayer classes into seperate files
 * added sound output using port audio
 * sprinkled comments throughout source code, and general source tidyup
 * created makefile
 
-2007-12-07:
+2007-12-07: (Tammo "kb" Hinrichs)
 * fixed 40x and 4x0 vibrato effects (jogeir - tiny tunes)
 * fixed pattern loop (olof gustafsson - pinball illusions)
 * fixed fine volslide down (olof gustafsson - pinball illusions)
 * included some external header files
 * cleanups
 
-2007-12-06:
+2007-12-06: (Tammo "kb" Hinrichs)
 * first "release". Note to self: Don't post stuff on pouet.net when drunk.
 
 ## Compilation
 type `make` or `g++ -o tinymod pkg-config --libs alsa tinymod.cpp -lm -L . -l:libportaudio.a` on the command line
 
-## Author
+## Author(s)
+Tammo "kb" Hinrichs<br>
 Jason Bou-Samra
