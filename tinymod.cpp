@@ -91,9 +91,12 @@ tinymod --help for help\n");
     }												// display usage, then exit
 
 if(!strcmp(filename, "--about")) {
-    printf("TinyMOD\n\n
+    printf("TinyMOD\n\n\
 An Amiga MOD file player that tries to replicate the authentic sound\n\
-charateristics of an Amiga via software emulation of the Paula chip.\n\
+charateristics of an Amiga via software emulation of the Paula chip.\n\n\
+Authors:\n\
+[Tammo \"kb\" Hinrichs in 2007]\n\
+[Jason Bou-samra in 2024]\n\
 "); return 0;
     }												// display about, then exit
 
