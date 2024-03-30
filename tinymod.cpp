@@ -21,21 +21,22 @@
 
   Changelog:
 
-  2024-03-09: (modifications by Jason Bou-Samra)
+  2024-03-09: (Jason Bou-Samra)
   * changes to main() routine to make executable from Linux command line interface
   * modularised paula and modplayer classes into seperate files
   * added sound output using port audio
   * sprinkled comments throughout source code, and general source formatting
   * created makefile
 
-  2007-12-07:
+  2007-12-07: (Tammo "kb" Hinrichs)
   * fixed 40x and 4x0 vibrato effects (jogeir - tiny tunes)
   * fixed pattern loop (olof gustafsson - pinball illusions)
   * fixed fine volslide down (olof gustafsson - pinball illusions)
   * included some external header files
   * cleanups
 
-  2007-12-06: first "release". Note to self: Don't post stuff on pouet.net when drunk.
+  2007-12-06: (Tammo "kb" Hinrichs)
+  * first "release". Note to self: Don't post stuff on pouet.net when drunk.
 
 */
 
@@ -90,13 +91,14 @@ tinymod --help for help\n");
     }												// display usage, then exit
 
 if(!strcmp(filename, "--about")) {
-    printf("TinyMOD\n"); return 0;
+    printf("TinyMOD\n\n
+An Amiga MOD file player that tries to replicate the authentic sound\n\
+charateristics of an Amiga via software emulation of the Paula chip.\n\
+"); return 0;
     }												// display about, then exit
 
 if(!strcmp (filename,  "--help")) {
     printf("Usage: tinymod [<mod name>|OPTION]\n\n\
-An Amiga MOD file player that tries to replicate the authentic sound\n\
-charateristics of an Amiga via software emulation of the Paula chip.\n\n\
 OPTIONS\n\
 --about            displays about message\n\
 --help             displays this help message\n"); return 0;
@@ -223,8 +225,8 @@ OPTIONS\n\
 // **********************
 // **  hidden message  **
 // **********************
-char author[] = { "tinymod" };
-const char* text = "09/03/2023";
+char message[] = { "toto, all the way\n" };
+const char* text = "09/03/2024 jason bou-samra, 07/12/2007 Tammo \"kb\" Hinrichs\n";
 
 // *******************************
 // **  error handling routine   **
