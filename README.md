@@ -1,44 +1,139 @@
-# TinyMOD
-Written by Tammo "kb" Hinrichs in 2007<br>
-This source code is hereby placed into the public domain. Use, distribute,
-modify, misappropriate and generally abuse it as you wish. Giving credits
-would be nice of course.</p>
+# TinyMOD - Amiga MOD File Player
 
-<p>This player includes an Amiga Paula chip "emulation" that faithfully recreates
-how it sounds when a sample is resampled using a master clock of 3.5 MHz. Yes,
-rendering at this rate and downsampling to the usual 48KHz takes quite a bit
-of CPU. Feel free to replace this part with some conventional mixing routines
-if authenticity isn't your goal and you really need Protracker MOD support
-for any other reason...</p>
+TinyMOD is a high-fidelity Amiga MOD (Protracker format) file player that authentically recreates the sound characteristics of original Amiga hardware through software emulation of the Paula audio chip.
 
-<p>The code should be pretty portable, all OS/platform dependent stuff is
-at the top. Code for testing is at the bottom.</p>
+## Features
 
-<p>You'll need some kind of sound output that calls back the player providing
-it a stereo interleaved single float buffer to write into (0dB=1.0).</p>
+- **Authentic Paula Chip Emulation**: Faithfully replicates the Amiga Paula chip sound by operating at the original master clock rate (3.5 MHz) and downsampling to standard output rates
+- **Protracker Support**: Full support for MOD file format with all standard effects
+- **High-Quality Resampling**: Uses windowed-sinc FIR filtering for excellent audio quality
+- **4-Channel Audio**: Stereo output with proper channel mixing and panning
+- **Effect Processing**: Complete MOD effect support including:
+  - Vibrato and tremolo
+  - Pitch slides and portamento
+  - Volume slides
+  - Arpeggio
+  - Pattern looping and breaking
+  - And more...
 
-## Changelog:
+## Building
 
-2024-03-09: (Jason Bou-Samra)
-* changes to main() routine to make executable from Linux command line interface
-* modularised paula and modplayer classes into seperate files
-* added sound output using port audio
-* sprinkled comments throughout source code, and general source tidyup
-* created makefile
+### Requirements
 
-2007-12-07: (Tammo "kb" Hinrichs)
-* fixed 40x and 4x0 vibrato effects (jogeir - tiny tunes)
-* fixed pattern loop (olof gustafsson - pinball illusions)
-* fixed fine volslide down (olof gustafsson - pinball illusions)
-* included some external header files
-* cleanups
+- GCC/G++ compiler
+- PortAudio library (libportaudio.a)
+- ALSA development libraries (for Linux)
+- Make
 
-2007-12-06: (Tammo "kb" Hinrichs)
-* first "release". Note to self: Don't post stuff on pouet.net when drunk.
+### Compilation
 
-## Compilation
-type `make` or `g++ -o tinymod pkg-config --libs alsa tinymod.cpp -lm -L . -l:libportaudio.a` on the command line
+```bash
+make
+```
 
-## Author(s)
-Tammo "kb" Hinrichs<br>
-Jason Bou-Samra
+The Makefile will:
+- Compile the modular source files
+- Link with PortAudio and system libraries
+- Create the `tinymod` executable
+
+### Cleanup
+
+```bash
+make clean
+```
+
+## Usage
+
+### Playing a MOD File
+
+```bash
+./tinymod music.mod
+```
+
+### Getting Help
+
+```bash
+./tinymod --help
+```
+
+### About
+
+```bash
+./tinymod --about
+```
+
+## Architecture
+
+The codebase is organized into modular components:
+
+### Core Modules
+
+- **`src/types.h`**: Type definitions, memory utilities, and mathematical functions
+- **`src/config.h`**: Centralized configuration constants
+- **`src/paula.h`/`src/paula.cpp`**: Amiga Paula chip emulator
+- **`src/modplayer.h`/`src/modplayer.cpp`**: MOD file parser and playback engine
+- **`src/main.cpp`**: Command-line interface and audio system integration
+
+### Design Principles
+
+- **Modular Design**: Each component has a single responsibility
+- **Well-Documented**: Extensive comments explaining algorithms and MOD format details
+- **Portable**: Platform-independent code with PortAudio for audio I/O
+- **Authentic**: Preserves original Paula chip behavior and MOD effect processing
+
+## Technical Details
+
+### Paula Chip Emulation
+
+The Paula emulator processes audio at the original Amiga clock rate (3,740,000 Hz) and applies:
+- PWM (Pulse Width Modulation) for sample playback
+- Ring buffer for sample storage
+- Windowed-sinc FIR filter for high-quality resampling
+
+### MOD Format Support
+
+Supports the following MOD file variants:
+- Standard MOD (4 channels, 16-32 samples)
+- M.K. format (32 samples)
+- FLT4 (Startrekker, 32 samples)
+- M!K! (extended patterns, 32 samples)
+
+### Effect Processing
+
+All major Protracker effects are implemented:
+- 0x: Arpeggio
+- 1x: Slide up
+- 2x: Slide down
+- 3x: Tone portamento
+- 4x: Vibrato
+- 5x: Tone portamento + volume slide
+- 6x: Vibrato + volume slide
+- 7x: Tremolo
+- 9x: Sample offset
+- Ax: Volume slide
+- Bx: Position jump
+- Cx: Set volume
+- Dx: Pattern break
+- Ex: Extended effects
+- Fx: Set speed/BPM
+
+## Authors
+
+- **Tammo "kb" Hinrichs** - Original Paula emulator implementation (2007)
+- **Jason Bou-samra** - Code refactoring, modularization, and PortAudio integration (2024)
+
+## License
+
+This software is released into the **public domain**. Use, distribute, and modify freely without restriction.
+
+## Notes
+
+- High-quality Paula emulation requires significant CPU resources due to the 3.5 MHz -> 48 KHz resampling ratio
+- Playback duration is configurable via NUM_SECONDS constant in config.h
+- Audio output can be customized through PortAudio configuration
+
+## References
+
+- Protracker MOD Format Documentation
+- Amiga Hardware Specifications
+- Paula Chip Audio Hardware Documentation
